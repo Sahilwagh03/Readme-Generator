@@ -4,7 +4,7 @@ import { Social } from '../Social/Social'
 import { GenerateButton } from '../GenerateButton/GenerateButton'
 import { useEffect } from 'react'
 
-export const Home = (prop) => {
+export const Home = () => {
 
   const data = {
     title:'',
@@ -41,7 +41,6 @@ export const Home = (prop) => {
     data.Software=SoftwareArray
     data.GameENgine=GameENgineArray
     data.Others=OthersArray
-
   }
   const handleClick=()=>{
     console.log(data.title ,data.name,"\n",data.subtitle,"\n",data.ProgramL)
@@ -56,8 +55,6 @@ export const Home = (prop) => {
     console.log(data.GameENgine)
     console.log(data.Others)
     sessionStorage.setItem('Data' , JSON.stringify(data))
-    
-    prop.printdata()
   }  
 
 

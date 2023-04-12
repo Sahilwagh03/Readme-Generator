@@ -8,19 +8,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Markdown } from './Component/MarkDown/Markdown'
 
 function App() {
-  const [Data, setData] = useState([])
-  const userData=(data)=>{
-    setData(data)
-  }
-  const Clicked=()=>{
-    console.log(Data)
-  }
+
   return (
     <>
       <Header />
       <BrowserRouter>
         <Routes>
-        <Route path='/' element={<Home getAllData={userData} printdata={Clicked}/>} />
+        <Route path='/' element={<Home />} />
         <Route path='/Markdown' element={<Markdown />} />
         </Routes>
       </BrowserRouter>

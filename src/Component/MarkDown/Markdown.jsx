@@ -5,10 +5,16 @@ import { Link } from 'react-router-dom'
 export const Markdown = () => {
 
   const FinalData= JSON.parse(sessionStorage.getItem('Data'))
-
-  const skilllist = FinalData.ProgramL.concat(FinalData.App , FinalData.BackEnd , FinalData.DataVisulalization,
-    FinalData.Database , FinalData.FrameW ,FinalData.FrontEnd ,FinalData.GameENgine , FinalData.Testing ,FinalData.Others
+  let skilllist;
+  if(sessionStorage.length!=0){
+    skilllist = FinalData.ProgramL.concat(FinalData.App , FinalData.BackEnd , FinalData.DataVisulalization,
+      FinalData.Database , FinalData.FrameW ,FinalData.FrontEnd ,FinalData.GameENgine , FinalData.Testing ,FinalData.Others
   , FinalData.Software)
+  }
+  let skilllist2=['flutter', 'reactnative','firebase']
+
+  
+
   const handleCopy = () => {
     const htmlcontent=document.getElementById('Markdown-section').innerText
     navigator.clipboard.writeText(htmlcontent).then(() => {
@@ -31,10 +37,13 @@ export const Markdown = () => {
           <div className="w-full text-sm text-gray-900 shadow-xl mt-2 p-4 bg-gray-100 border-2 border-solid border-gray-800" id="markdown-box">
              <div className="Markdown-section"  id='Markdown-section'>
               {
-                sessionStorage.length==0 ?
+                sessionStorage.length!=0 && FinalData.App && FinalData.BackEnd && FinalData.DataVisulalization &&
+                FinalData.Database && FinalData.FrameW && FinalData.FrontEnd && FinalData.GameENgine && FinalData.Testing && FinalData.Others
+                && FinalData.Software == 0 ?
                 <>
-                <Title name="Dev" title="Hi 👋, I'm"/>
+                <Title name='Dev' title="Hi 👋, I'm"/>
                 <SubTitle subtitle="A passionate frontend developer from India"/>
+                <DisplaySkills skills={skilllist2} icons={icons}/>
                 </>
                 :
                 <>
