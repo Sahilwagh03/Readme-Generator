@@ -9,6 +9,7 @@ export const About = (prop) => {
  
   prop.getNameandSubtile(Name,subtitle_input1,title_input1)
   
+  
 
   return (
     <>
