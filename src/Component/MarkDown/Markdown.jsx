@@ -2,28 +2,41 @@ import React from 'react'
 import './Markdown.css'
 import { icons } from './skills'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const Markdown = () => {
 
-  const FinalData= JSON.parse(sessionStorage.getItem('Data'))
+  const FinalData = JSON.parse(sessionStorage.getItem('Data'))
   let skilllist;
-  if(sessionStorage.length!=0){
-    skilllist = FinalData.ProgramL.concat(FinalData.App , FinalData.BackEnd , FinalData.DataVisulalization,
-      FinalData.Database , FinalData.FrameW ,FinalData.FrontEnd ,FinalData.GameENgine , FinalData.Testing ,FinalData.Others
-  , FinalData.Software)
+  if (sessionStorage.length != 0) {
+    skilllist = FinalData.ProgramL.concat(FinalData.App, FinalData.BackEnd, FinalData.DataVisulalization,
+      FinalData.Database, FinalData.FrameW, FinalData.FrontEnd, FinalData.GameENgine, FinalData.Testing, FinalData.Others
+      , FinalData.Software)
   }
-  let skilllist2=['flutter', 'reactnative','firebase']
+  let skilllist2 = ['flutter', 'reactnative', 'firebase']
 
-  
+
 
   const handleCopy = () => {
-    const htmlcontent=document.getElementById('Markdown-section').innerText
+    const htmlcontent = document.getElementById('Markdown-section').innerText
     navigator.clipboard.writeText(htmlcontent).then(() => {
-     console.log("copied")
+      console.log("copied")
+      toast.success('Copied', {
+        position: "top-right",
+        autoClose: 800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
     }).catch((error) => {
       console.error(`Error copying to clipboard: ${error}`);
     });
   }
-   
+
   return (
     <>
       <div className="main_container m-4">
@@ -35,34 +48,44 @@ export const Markdown = () => {
             <button type="button" className="text-base  w_btn border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1"><svg aria-hidden="true" role="img" className="octicon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style={{ display: ' inline-block', userSelect: 'none', verticalAlign: 'text-bottom' }}><path fillRule="evenodd" d="M1.679 7.932c.412-.621 1.242-1.75 2.366-2.717C5.175 4.242 6.527 3.5 8 3.5c1.473 0 2.824.742 3.955 1.715 1.124.967 1.954 2.096 2.366 2.717a.119.119 0 010 .136c-.412.621-1.242 1.75-2.366 2.717C10.825 11.758 9.473 12.5 8 12.5c-1.473 0-2.824-.742-3.955-1.715C2.92 9.818 2.09 8.69 1.679 8.068a.119.119 0 010-.136zM8 2c-1.981 0-3.67.992-4.933 2.078C1.797 5.169.88 6.423.43 7.1a1.619 1.619 0 000 1.798c.45.678 1.367 1.932 2.637 3.024C4.329 13.008 6.019 14 8 14c1.981 0 3.67-.992 4.933-2.078 1.27-1.091 2.187-2.345 2.637-3.023a1.619 1.619 0 000-1.798c-.45-.678-1.367-1.932-2.637-3.023C11.671 2.992 9.981 2 8 2zm0 8a2 2 0 100-4 2 2 0 000 4z"></path></svg><span className="hidden sm:block">preview</span></button>
           </div>
           <div className="w-full w-set text-sm text-gray-900 shadow-xl mt-2 p-4 bg-gray-100 border-2 border-solid border-gray-800" id="markdown-box">
-             <div className="Markdown-section"  id='Markdown-section' style={{margin:'20px'}}>
+            <div className="Markdown-section" id='Markdown-section' style={{ margin: '20px' }}>
               {
-                FinalData.App== 0 && FinalData.BackEnd== 0 && FinalData.DataVisulalization== 0 &&
-                FinalData.Database== 0 && FinalData.FrameW== 0 && FinalData.FrontEnd== 0 && FinalData.GameENgine== 0 && FinalData.Testing== 0 && FinalData.Others== 0
-                && FinalData.Software == 0 ?
-                <>
-                <Title name='Dev' title="Hi 👋, I'm"/>
-                <SubTitle subtitle="A passionate frontend developer from India"/>
-                <DisplaySkills skills={skilllist2} icons={icons}/>
-                </>
-                :
-                <>
-                <Title name={FinalData.name} title={FinalData.title}/>
-                <SubTitle subtitle={FinalData.subtitle}/>
-                <DisplaySkills skills={skilllist} icons={icons}/>
-                </> 
+                FinalData.name == '' && FinalData.App == 0 && FinalData.BackEnd == 0 && FinalData.DataVisulalization == 0 &&
+                  FinalData.Database == 0 && FinalData.FrameW == 0 && FinalData.FrontEnd == 0 && FinalData.GameENgine == 0 && FinalData.Testing == 0 && FinalData.Others == 0
+                  && FinalData.Software == 0 ?
+                  <>
+                    <Title name='Dev' title="Hi 👋, I'm" />
+                    <SubTitle subtitle="A passionate frontend developer from India" />
+                    <DisplaySkills skills={skilllist2} icons={icons} />
+                  </>
+                  :
+                  <>
+                    <Title name={FinalData.name} title={FinalData.title} />
+                    <SubTitle subtitle={FinalData.subtitle} />
+                    <DisplaySkills skills={skilllist} icons={icons} />
+                  </>
               }
-             </div>
+            </div>
           </div>
         </div>
       </div>
+      <ToastContainer position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" />
     </>
   )
 }
 
 
 const Title = (props) => {
-  const { title , name } = props;
+  const { title, name } = props;
   if (name) {
     return (
       <>
