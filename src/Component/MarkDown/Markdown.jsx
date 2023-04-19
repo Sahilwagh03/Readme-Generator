@@ -8,7 +8,7 @@ export const Markdown = () => {
 
   const FinalData = JSON.parse(localStorage.getItem('Data'))
   let skilllist;
-  if (sessionStorage.length != 0) {
+  if (localStorage.length != 0) {
     skilllist = FinalData.ProgramL.concat(FinalData.App, FinalData.BackEnd, FinalData.DataVisulalization,
       FinalData.Database, FinalData.FrameW, FinalData.FrontEnd, FinalData.GameENgine, FinalData.Testing, FinalData.Others
       , FinalData.Software)
