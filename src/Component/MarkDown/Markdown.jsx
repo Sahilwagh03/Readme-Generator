@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export const Markdown = () => {
 
-  const FinalData = JSON.parse(sessionStorage.getItem('Data'))
+  const FinalData = JSON.parse(localStorage.getItem('Data'))
   let skilllist;
   if (sessionStorage.length != 0) {
     skilllist = FinalData.ProgramL.concat(FinalData.App, FinalData.BackEnd, FinalData.DataVisulalization,
@@ -34,6 +34,16 @@ export const Markdown = () => {
 
     }).catch((error) => {
       console.error(`Error copying to clipboard: ${error}`);
+      toast.error('🦄 Wow so easy!', {
+        position: "top-right",
+        autoClose: 800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     });
   }
 

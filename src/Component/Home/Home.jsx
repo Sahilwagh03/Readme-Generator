@@ -54,7 +54,7 @@ export const Home = () => {
     console.log(data.Software)
     console.log(data.GameENgine)
     console.log(data.Others)
-    sessionStorage.setItem('Data' , JSON.stringify(data))
+    localStorage.setItem('Data' , JSON.stringify(data))
   }  
 
 
@@ -67,7 +67,7 @@ export const Home = () => {
     <About getNameandSubtile={getAboutData}/>
     <Skills getSkills={getSkillsData}/>
     <Social />
-    <GenerateButton click={handleClick}/>
+    <GenerateButton click={handleClick} data={data}/>
     </>
   )
 }
